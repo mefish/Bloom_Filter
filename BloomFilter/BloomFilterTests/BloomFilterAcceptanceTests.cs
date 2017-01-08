@@ -1,4 +1,6 @@
-﻿using BloomFilterApp;
+﻿using System;
+using System.Diagnostics;
+using BloomFilterApp;
 using NUnit.Framework;
 
 namespace BloomFilterTests
@@ -15,14 +17,19 @@ namespace BloomFilterTests
         }
 
         [Test]
-        [Ignore("In progress, needs to be moved to acceptance tests")]
+        [Ignore("In progress, and takes forever to run.")]
         public void CanRememberThousandsOfThings()
         {
             var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
 
             _bloomFilter.RememberStringList(stringsToRemember);
 
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
             _bloomFilter.VerifyStringList(stringsToRemember);
+            stopWatch.Stop();
+            Assert.Less(stopWatch.Elapsed, TimeSpan.FromSeconds(1));
         }
     }
 }

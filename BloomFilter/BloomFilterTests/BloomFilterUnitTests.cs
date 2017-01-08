@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BloomFilterApp;
+﻿using BloomFilterApp;
 using NUnit.Framework;
 
 namespace BloomFilterTests
@@ -37,9 +36,5 @@ namespace BloomFilterTests
 
             _bloomFilter.VerifyStringList(stringsToRemember);
         }
-
-        
-
-        
     }
 }
