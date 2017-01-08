@@ -7,8 +7,8 @@
     <ProjectGuid>{E5777239-AEC7-4DAA-AACB-41230D4AE0F4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BloomFilter</RootNamespace>
-    <AssemblyName>BloomFilter</AssemblyName>
+    <RootNamespace>BloomFilterApp</RootNamespace>
+    <AssemblyName>BloomFilterApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

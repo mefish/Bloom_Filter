@@ -1,11 +1,17 @@
-﻿namespace BloomFilter
+﻿namespace BloomFilterApp
 {
     public class BloomFilter
     {
-        public void Remember(object thingToRember) {}
+        private string _thingToRemember;
 
-        public bool DidRemember(object thingToRemember)
+        public void Remember(string thingToRember)
         {
+            _thingToRemember = "Cat";
+        }
+
+        public bool DidRemember(string thingToRemember)
+        {
+            if (_thingToRemember == thingToRemember) return true;
             return false;
         }
     }
