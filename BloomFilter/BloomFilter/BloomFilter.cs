@@ -14,8 +14,13 @@ namespace BloomFilterApp
 
         public bool DidRemember(string thingToRemember)
         {
-            if (_thingsToRemember.Any(x => x == thingToRemember)) return true;
+            if (HasBeenRemembered(thingToRemember)) return true;
             return false;
+        }
+
+        private bool HasBeenRemembered(string thingToRemember)
+        {
+            return _thingsToRemember.Any(x => x == thingToRemember);
         }
     }
 }

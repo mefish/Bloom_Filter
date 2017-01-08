@@ -5,12 +5,12 @@ using NUnit.Framework;
 namespace BloomFilterTests
 {
     [TestFixture]
-    public class BloomFilterTests
+    public class BloomFilterUnitTests
     {
         private const string THING_TO_REMEMBER = "Cat";
         private readonly BloomFilter _bloomFilter;
 
-        public BloomFilterTests()
+        public BloomFilterUnitTests()
         {
             _bloomFilter = new BloomFilter();
         }
@@ -38,16 +38,7 @@ namespace BloomFilterTests
             _bloomFilter.VerifyStringList(stringsToRemember);
         }
 
-        [Test]
-        [Ignore("In progress, needs to be moved to acceptance tests")]
-        public void CanRememberThousandsOfThings()
-        {
-            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
-
-            _bloomFilter.RememberStringList(stringsToRemember);
-
-            _bloomFilter.VerifyStringList(stringsToRemember);
-        }
+        
 
         
     }

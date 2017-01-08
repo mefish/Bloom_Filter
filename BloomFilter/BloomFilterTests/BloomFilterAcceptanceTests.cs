@@ -1,12 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BloomFilterApp;
+using NUnit.Framework;
 
 namespace BloomFilterTests
 {
-    class BloomFilterAcceptanceTests
+    [TestFixture]
+    internal class BloomFilterAcceptanceTests
     {
+        private BloomFilter _bloomFilter;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _bloomFilter = new BloomFilter();
+        }
+
+        [Test]
+        [Ignore("In progress, needs to be moved to acceptance tests")]
+        public void CanRememberThousandsOfThings()
+        {
+            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
+
+            _bloomFilter.RememberStringList(stringsToRemember);
+
+            _bloomFilter.VerifyStringList(stringsToRemember);
+        }
     }
 }

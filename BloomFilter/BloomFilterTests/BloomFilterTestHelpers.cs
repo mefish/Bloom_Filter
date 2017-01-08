@@ -11,7 +11,7 @@ namespace BloomFilterTests
 
         public static string GetRandomString(int size = 8)
         {
-            var stringChars = new char[8];
+            var stringChars = new char[size];
             var random = new Random();
 
             for (var i = 0; i < stringChars.Length; i++) stringChars[i] = CHARS[random.Next(CHARS.Length)];
@@ -32,7 +32,7 @@ namespace BloomFilterTests
         public static List<string> GetListOfRandomStringsOfSize(int stringsToTest)
         {
             var stringsToRemember = new List<string>();
-            for (var i = 0; i < stringsToTest; i++) stringsToRemember.Add(BloomFilterTestHelpers.GetRandomString());
+            for (var i = 0; i < stringsToTest; i++) stringsToRemember.Add(GetRandomString());
             return stringsToRemember;
         }
     }
