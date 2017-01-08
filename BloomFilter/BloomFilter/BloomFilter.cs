@@ -1,17 +1,20 @@
-﻿namespace BloomFilterApp
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace BloomFilterApp
 {
     public class BloomFilter
     {
-        private string _thingToRemember;
+        private readonly List<string> _thingsToRemember = new List<string>();
 
         public void Remember(string thingToRember)
         {
-            _thingToRemember = "Cat";
+            _thingsToRemember.Add(thingToRember);
         }
 
         public bool DidRemember(string thingToRemember)
         {
-            if (_thingToRemember == thingToRemember) return true;
+            if (_thingsToRemember.Any(x => x == thingToRemember)) return true;
             return false;
         }
     }
