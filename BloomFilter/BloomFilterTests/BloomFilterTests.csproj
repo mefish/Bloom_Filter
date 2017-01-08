@@ -46,6 +46,7 @@
     <Compile Include="BloomFilterAcceptanceTests.cs" />
     <Compile Include="BloomFilterTestHelpers.cs" />
     <Compile Include="BloomFilterUnitTests.cs" />
+    <Compile Include="HasherUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
