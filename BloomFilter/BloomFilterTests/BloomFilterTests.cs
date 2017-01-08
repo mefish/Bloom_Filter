@@ -1,47 +1,54 @@
 ﻿using System.Collections.Generic;
-using NUnit.Framework;
 using BloomFilterApp;
+using NUnit.Framework;
 
 namespace BloomFilterTests
 {
     [TestFixture]
     public class BloomFilterTests
     {
+        private const string THING_TO_REMEMBER = "Cat";
+        private readonly BloomFilter _bloomFilter;
+
+        public BloomFilterTests()
+        {
+            _bloomFilter = new BloomFilter();
+        }
+
         [Test]
         public void ItemNotRemembered_WillReturnFalse()
         {
-            var bloomFilter = new BloomFilter();
-            Assert.IsFalse(bloomFilter.DidRemember("Cat"));
+            Assert.IsFalse(_bloomFilter.DidRemember(THING_TO_REMEMBER));
         }
 
         [Test]
         public void ItemRemembered_WillReturnTrue()
         {
-            var bloomFilter = new BloomFilter();
-            bloomFilter.Remember("Cat");
-            Assert.IsTrue(bloomFilter.DidRemember("Cat"));
+            _bloomFilter.Remember(THING_TO_REMEMBER);
+            Assert.IsTrue(_bloomFilter.DidRemember(THING_TO_REMEMBER));
         }
 
         [Test]
         public void CanRememberManyThings()
         {
-            var bloomFilter = new BloomFilter();
-            var stringsToRemember = new List<string>();
+            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10);
 
-            for (int i = 0; i < 10; i++)
-            {
-                stringsToRemember.Add(BloomFilterTestHelpers.GetRandomString());
-            }
+            _bloomFilter.RememberStringList(stringsToRemember);
 
-            foreach (var testString in stringsToRemember)
-            {
-                bloomFilter.Remember(testString);
-            }
-
-            foreach (var testString in stringsToRemember)
-            {
-                Assert.IsTrue(bloomFilter.DidRemember(testString));
-            }
+            _bloomFilter.VerifyStringList(stringsToRemember);
         }
+
+        [Test]
+        [Ignore("In progress, needs to be moved to acceptance tests")]
+        public void CanRememberThousandsOfThings()
+        {
+            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
+
+            _bloomFilter.RememberStringList(stringsToRemember);
+
+            _bloomFilter.VerifyStringList(stringsToRemember);
+        }
+
+        
     }
 }
