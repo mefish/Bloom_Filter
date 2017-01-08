@@ -20,7 +20,7 @@ namespace BloomFilterTests
         [Ignore("In progress, and takes forever to run.")]
         public void CanRememberThousandsOfThings()
         {
-            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
+            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10000);
 
             _bloomFilter.RememberStringList(stringsToRemember);
 
