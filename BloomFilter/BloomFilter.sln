@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloomFilter", "BloomFilter\BloomFilter.csproj", "{E5777239-AEC7-4DAA-AACB-41230D4AE0F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloomFilterApp", "BloomFilter\BloomFilterApp.csproj", "{E5777239-AEC7-4DAA-AACB-41230D4AE0F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloomFilterTests", "BloomFilterTests\BloomFilterTests.csproj", "{EB3D5D55-17E2-4399-A44E-D53055618598}"
 EndProject

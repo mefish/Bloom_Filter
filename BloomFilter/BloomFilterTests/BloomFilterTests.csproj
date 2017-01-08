@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BloomFilterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BloomFilter\BloomFilter.csproj">
+    <ProjectReference Include="..\BloomFilter\BloomFilterApp.csproj">
       <Project>{e5777239-aec7-4daa-aacb-41230d4ae0f4}</Project>
-      <Name>BloomFilter</Name>
+      <Name>BloomFilterApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
