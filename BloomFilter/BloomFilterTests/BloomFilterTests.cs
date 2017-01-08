@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using BloomFilterApp;
 
 namespace BloomFilterTests
@@ -25,13 +26,22 @@ namespace BloomFilterTests
         public void CanRememberManyThings()
         {
             var bloomFilter = new BloomFilter();
-            bloomFilter.Remember("Cat");
-            bloomFilter.Remember("Dog");
-            bloomFilter.Remember("Rat");
+            var stringsToRemember = new List<string>();
 
-            Assert.IsTrue(bloomFilter.DidRemember("Cat"));
-            Assert.IsTrue(bloomFilter.DidRemember("Dog"));
-            Assert.IsTrue(bloomFilter.DidRemember("Rat"));
+            for (int i = 0; i < 10; i++)
+            {
+                stringsToRemember.Add(BloomFilterTestHelpers.GetRandomString());
+            }
+
+            foreach (var testString in stringsToRemember)
+            {
+                bloomFilter.Remember(testString);
+            }
+
+            foreach (var testString in stringsToRemember)
+            {
+                Assert.IsTrue(bloomFilter.DidRemember(testString));
+            }
         }
     }
 }
