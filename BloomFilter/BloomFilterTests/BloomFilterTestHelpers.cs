@@ -8,13 +8,17 @@ namespace BloomFilterTests
     internal static class BloomFilterTestHelpers
     {
         private const string CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
+        
         public static string GetRandomString(int size = 8)
         {
             var stringChars = new char[size];
-            var random = new Random();
+            var random = new Random(Guid.NewGuid().GetHashCode());
 
-            for (var i = 0; i < stringChars.Length; i++) stringChars[i] = CHARS[random.Next(CHARS.Length)];
+            for (var i = 0; i < stringChars.Length; i++)
+            {
+                var nextChar = random.Next(CHARS.Length);
+                stringChars[i] = CHARS[nextChar];
+            }
 
             return new String(stringChars);
         }
@@ -29,7 +33,7 @@ namespace BloomFilterTests
             foreach (var testString in stringsToRemember) bloomFilter.Add(testString);
         }
 
-        public static List<string> GetListOfRandomStringsOfSize(int stringsToTest, int stringSize = 3)
+        public static List<string> GetListOfRandomStringsOfSize(int stringsToTest, int stringSize = 8)
         {
             var stringsToRemember = new List<string>();
             for (var i = 0; i < stringsToTest; i++) stringsToRemember.Add(GetRandomString(stringSize));

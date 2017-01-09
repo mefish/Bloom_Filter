@@ -8,6 +8,7 @@ namespace BloomFilterTests
     [TestFixture]
     internal class BloomFilterAcceptanceTests
     {
+        private const int FALSE_POSITIVE_TOLERANCE = 10;
         private BloomFilter _bloomFilter;
 
         [SetUp]
@@ -32,10 +33,9 @@ namespace BloomFilterTests
         }
 
         [Test]
-        [Ignore("This is a big problem, working on a fix")]
-        public void WhenRememberingThousandsOfThingsThereIsNeverAFalseNegative()
+        public void FalsePositivesAreInAcceptableBoundries()
         {
-            var allStringstoTest = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10000, 50);
+            var allStringstoTest = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000, 50);
 
             for (int i = 0; i < allStringstoTest.Count; i++)
             {
@@ -45,10 +45,7 @@ namespace BloomFilterTests
                 }
             }
 
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            int numberFailed = 0;
+            int falsePositives = 0;
             for (int i = 0; i < allStringstoTest.Count; i++)
             {
                 if (i % 2 == 0)
@@ -58,13 +55,13 @@ namespace BloomFilterTests
                 }
                 else
                 {
-                    if (_bloomFilter.DidRemember(allStringstoTest[i])) numberFailed++;
+                    if (_bloomFilter.DidRemember(allStringstoTest[i])) falsePositives++;
+                    
                 }
             }
 
-            stopWatch.Stop();
-            Console.WriteLine(numberFailed);
-            Assert.Less(numberFailed, 10);
+            Console.WriteLine(falsePositives);
+            Assert.Less(falsePositives, FALSE_POSITIVE_TOLERANCE);
         }
     }
 }
