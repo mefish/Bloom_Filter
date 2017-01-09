@@ -7,9 +7,10 @@ namespace BloomFilterTests
     public class BloomFilterUnitTests
     {
         private const string THING_TO_REMEMBER = "Cat";
-        private readonly BloomFilter _bloomFilter;
+        private BloomFilter _bloomFilter;
 
-        public BloomFilterUnitTests()
+        [SetUp]
+        public void SetUp()
         {
             _bloomFilter = new BloomFilter();
         }
