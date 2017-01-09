@@ -6,21 +6,22 @@ namespace BloomFilterApp
     {
         //        private readonly List<string> _thingsToRemember = new List<string>();
 
-        private BitArray _bitArray = new BitArray(128);
+        private BitArray _bitArray = new BitArray(int.MaxValue);
 
         public void Remember(string thingToRember)
         {
             var hash = HashString(thingToRember);
 
-            _bitArray = _bitArray.Or(hash);
+            _bitArray[hash] = true;
         }
 
-        private static BitArray HashString(string thingToRember)
+        private int HashString(string thingToRember)
         {
             var hasher = new Hasher();
 
-            var hash = hasher.Hash(thingToRember);
-            return hash;
+            var firstHash = hasher.Hash(thingToRember);
+            var secondHash = firstHash.GetHashCode();
+            return secondHash;
         }
 
         public bool DidRemember(string thingToRemember)
@@ -33,11 +34,7 @@ namespace BloomFilterApp
         {
             var hash = HashString(thingToRemember);
 
-            var probablyExists = true;
-
-            for (var i = 0; i < hash.Length; i++) if (_bitArray.Get(i) == false) probablyExists = false;
-
-            return probablyExists;
+            return _bitArray[hash];
         }
     }
 }

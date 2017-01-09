@@ -21,7 +21,6 @@ namespace BloomFilterTests
         }
 
         [Test]
-        [Ignore("Temporarily broken, fixing now")]
         public void ItemRemembered_WillReturnTrue()
         {
             _bloomFilter.Remember(THING_TO_REMEMBER);

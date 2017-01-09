@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BloomFilterApp
 {
     public class Hasher
     {
         //Shamelessly ripped from https://gist.github.com/richardkundl/8300092
-        public BitArray Hash(string toHash)
+        public int Hash(string toHash)
         {
             var hash = 0;
 
-            foreach (var character in toHash)
-            {
+            foreach (var character in toHash) {
                 hash += character;
                 hash += (hash << 10);
                 hash ^= (hash >> 6);
@@ -20,16 +24,7 @@ namespace BloomFilterApp
             hash ^= (hash >> 11);
             hash += (hash << 15);
 
-            var hashArray = new BitArray(new[]
-                                         {
-                                                 hash
-                                         });
-
-            var bitArray = new BitArray(128);
-
-            for (var i = 0; i < hashArray.Length; i++) bitArray.Set(i, hashArray.Get(i));
-
-            return bitArray;
+            return hash;
         }
     }
 }

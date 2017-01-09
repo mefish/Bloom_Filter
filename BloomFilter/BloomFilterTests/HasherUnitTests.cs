@@ -13,8 +13,7 @@ namespace BloomFilterTests
 
             var hash = hasher.Hash("Cat");
 
-            Assert.IsNotNull(hash);
-            Assert.IsNotEmpty(hash);
+            Assert.IsTrue(hash != 0);
         }
 
         [Test]
