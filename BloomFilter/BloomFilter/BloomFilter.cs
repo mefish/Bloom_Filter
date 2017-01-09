@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace BloomFilterApp
 {
@@ -21,7 +22,7 @@ namespace BloomFilterApp
 
             var firstHash = hasher.Hash(thingToRember);
             var secondHash = firstHash.GetHashCode();
-            return secondHash;
+            return Math.Abs(secondHash);
         }
 
         public bool DidRemember(string thingToRemember)

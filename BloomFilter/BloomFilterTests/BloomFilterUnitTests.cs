@@ -28,7 +28,7 @@ namespace BloomFilterTests
         }
 
         [Test]
-        [Ignore("Temporarily broken, fixing now")]
+//        [Ignore("Temporarily broken, fixing now")]
         public void CanRememberManyThings()
         {
             var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10);

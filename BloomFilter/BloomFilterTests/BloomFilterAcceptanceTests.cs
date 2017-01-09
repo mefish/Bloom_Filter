@@ -17,7 +17,6 @@ namespace BloomFilterTests
         }
 
         [Test]
-        [Ignore("In progress, and takes forever to run.")]
         public void CanRememberThousandsOfThings()
         {
             var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10000);
