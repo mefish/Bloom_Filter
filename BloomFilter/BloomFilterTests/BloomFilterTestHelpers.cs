@@ -12,7 +12,7 @@ namespace BloomFilterTests
         public static string GetRandomString(int size = 8)
         {
             var stringChars = new char[size];
-            var random = new Random(Guid.NewGuid().GetHashCode());
+            var random = CreateRandomWithRandomSeed();
 
             for (var i = 0; i < stringChars.Length; i++)
             {
@@ -23,9 +23,15 @@ namespace BloomFilterTests
             return new String(stringChars);
         }
 
+        private static Random CreateRandomWithRandomSeed()
+        {
+            var random = new Random(Guid.NewGuid().GetHashCode());
+            return random;
+        }
+
         public static void VerifyStringList(this BloomFilter bloomFilter, IEnumerable<string> stringsToRemember)
         {
-            foreach (var testString in stringsToRemember) Assert.IsTrue(bloomFilter.DidRemember(testString));
+            foreach (var testString in stringsToRemember) Assert.IsTrue(bloomFilter.WasAdded(testString));
         }
 
         public static void AddStringListToFilter(this BloomFilter bloomFilter, IEnumerable<string> stringsToRemember)

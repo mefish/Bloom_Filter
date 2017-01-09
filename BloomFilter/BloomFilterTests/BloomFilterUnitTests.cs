@@ -18,14 +18,14 @@ namespace BloomFilterTests
         [Test]
         public void ItemNotAdded_WillReturnFalse()
         {
-            Assert.IsFalse(_bloomFilter.DidRemember(THING_TO_REMEMBER));
+            Assert.IsFalse(_bloomFilter.WasAdded(THING_TO_REMEMBER));
         }
 
         [Test]
         public void ItemAdded_WillReturnTrue()
         {
             _bloomFilter.Add(THING_TO_REMEMBER);
-            Assert.IsTrue(_bloomFilter.DidRemember(THING_TO_REMEMBER));
+            Assert.IsTrue(_bloomFilter.WasAdded(THING_TO_REMEMBER));
         }
 
         [Test]

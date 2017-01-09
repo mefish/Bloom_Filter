@@ -50,12 +50,12 @@ namespace BloomFilterTests
             {
                 if (i % 2 == 0)
                 {
-                    Assert.IsTrue(_bloomFilter.DidRemember(allStringstoTest[i]));
+                    Assert.IsTrue(_bloomFilter.WasAdded(allStringstoTest[i]));
 
                 }
                 else
                 {
-                    if (_bloomFilter.DidRemember(allStringstoTest[i])) falsePositives++;
+                    if (_bloomFilter.WasAdded(allStringstoTest[i])) falsePositives++;
                     
                 }
             }

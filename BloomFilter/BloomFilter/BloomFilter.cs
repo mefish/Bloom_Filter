@@ -15,21 +15,21 @@ namespace BloomFilterApp
             _bloomArray[hash] = true;
         }
 
-        private int HashString(string thingToRember)
+        private int HashString(string stringToRemember)
         {
             var hasher = new Hasher();
-            var firstHash = hasher.Hash(thingToRember);
+            var firstHash = hasher.Hash(stringToRemember);
             var secondHash = firstHash.GetHashCode();
             return Math.Abs(secondHash);
         }
 
-        public bool DidRemember(string thingToRemember)
+        public bool WasAdded(string stringToRemember)
         {
-            if (HasBeenRemembered(thingToRemember)) return true;
+            if (ProbablyHasBeenAdded(stringToRemember)) return true;
             return false;
         }
 
-        private bool HasBeenRemembered(string thingToRemember)
+        private bool ProbablyHasBeenAdded(string thingToRemember)
         {
             var hash = HashString(thingToRemember);
 
