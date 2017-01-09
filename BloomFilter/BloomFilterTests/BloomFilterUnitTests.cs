@@ -15,25 +15,24 @@ namespace BloomFilterTests
         }
 
         [Test]
-        public void ItemNotRemembered_WillReturnFalse()
+        public void ItemNotAdded_WillReturnFalse()
         {
             Assert.IsFalse(_bloomFilter.DidRemember(THING_TO_REMEMBER));
         }
 
         [Test]
-        public void ItemRemembered_WillReturnTrue()
+        public void ItemAdded_WillReturnTrue()
         {
-            _bloomFilter.Remember(THING_TO_REMEMBER);
+            _bloomFilter.Add(THING_TO_REMEMBER);
             Assert.IsTrue(_bloomFilter.DidRemember(THING_TO_REMEMBER));
         }
 
         [Test]
-//        [Ignore("Temporarily broken, fixing now")]
-        public void CanRememberManyThings()
+        public void CanAddAndTestForManyStrings()
         {
             var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10);
 
-            _bloomFilter.RememberStringList(stringsToRemember);
+            _bloomFilter.AddStringListToFilter(stringsToRemember);
 
             _bloomFilter.VerifyStringList(stringsToRemember);
         }

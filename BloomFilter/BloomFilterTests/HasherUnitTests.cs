@@ -6,12 +6,15 @@ namespace BloomFilterTests
     [TestFixture]
     internal class HasherUnitTests
     {
+        private const string TO_HASH = "Cat";
+        private const int RANDOM_STRING_SIZE = 3;
+
         [Test]
         public void AStringCanBeHashed()
         {
             var hasher = new Hasher();
 
-            var hash = hasher.Hash("Cat");
+            var hash = hasher.Hash(TO_HASH);
 
             Assert.IsTrue(hash != 0);
         }
@@ -21,8 +24,8 @@ namespace BloomFilterTests
         {
             var hasher = new Hasher();
 
-            var hash = hasher.Hash("Cat");
-            var secondHash = hasher.Hash("Cat");
+            var hash = hasher.Hash(TO_HASH);
+            var secondHash = hasher.Hash(TO_HASH);
 
             Assert.AreEqual(hash, secondHash);
         }
@@ -32,23 +35,25 @@ namespace BloomFilterTests
         {
             var hasher = new Hasher();
 
-            var hash = hasher.Hash("Cat");
+            var hash = hasher.Hash(TO_HASH);
             var secondHash = hasher.Hash("Dog");
 
             Assert.AreNotEqual(hash, secondHash);
         }
 
         [Test]
-        public void NoTwoHashesAreTheSameWithinReason()
+        public void NoTwoHashesAreTheSame_InAThousand()
         {
+            const int stringsToCreate = 1000;
             var hasher = new Hasher();
 
-            var hash = hasher.Hash("Cat");
-            for (var i = 0; i < 1000; i++)
+            var hash = hasher.Hash(TO_HASH);
+            
+            for (var i = 0; i < stringsToCreate; i++)
             {
-                var randomString = BloomFilterTestHelpers.GetRandomString(3);
+                var randomString = BloomFilterTestHelpers.GetRandomString(RANDOM_STRING_SIZE);
                 var randomStringHash = hasher.Hash(randomString);
-                if (randomString != "Cat") Assert.AreNotEqual(randomStringHash, hash);
+                if (randomString != TO_HASH) Assert.AreNotEqual(randomStringHash, hash);
             }
         }
     }

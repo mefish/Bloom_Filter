@@ -19,14 +19,14 @@ namespace BloomFilterTests
         [Test]
         public void CanRememberThousandsOfThings()
         {
-            var stringsToRemember = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(10000);
+            var stringsToTest = BloomFilterTestHelpers.GetListOfRandomStringsOfSize(100000);
 
-            _bloomFilter.RememberStringList(stringsToRemember);
+            _bloomFilter.AddStringListToFilter(stringsToTest);
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            _bloomFilter.VerifyStringList(stringsToRemember);
+            _bloomFilter.VerifyStringList(stringsToTest);
             stopWatch.Stop();
             Assert.Less(stopWatch.Elapsed, TimeSpan.FromSeconds(1));
         }

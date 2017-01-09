@@ -24,9 +24,9 @@ namespace BloomFilterTests
             foreach (var testString in stringsToRemember) Assert.IsTrue(bloomFilter.DidRemember(testString));
         }
 
-        public static void RememberStringList(this BloomFilter bloomFilter, IEnumerable<string> stringsToRemember)
+        public static void AddStringListToFilter(this BloomFilter bloomFilter, IEnumerable<string> stringsToRemember)
         {
-            foreach (var testString in stringsToRemember) bloomFilter.Remember(testString);
+            foreach (var testString in stringsToRemember) bloomFilter.Add(testString);
         }
 
         public static List<string> GetListOfRandomStringsOfSize(int stringsToTest)

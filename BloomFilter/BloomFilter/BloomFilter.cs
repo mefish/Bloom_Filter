@@ -5,21 +5,19 @@ namespace BloomFilterApp
 {
     public class BloomFilter
     {
-        //        private readonly List<string> _thingsToRemember = new List<string>();
+        //Left as Max, since we didn't stipulate any other constraints
+        private readonly BitArray _bloomArray = new BitArray(int.MaxValue);
 
-        private BitArray _bitArray = new BitArray(int.MaxValue);
-
-        public void Remember(string thingToRember)
+        public void Add(string thingToRember)
         {
             var hash = HashString(thingToRember);
 
-            _bitArray[hash] = true;
+            _bloomArray[hash] = true;
         }
 
         private int HashString(string thingToRember)
         {
             var hasher = new Hasher();
-
             var firstHash = hasher.Hash(thingToRember);
             var secondHash = firstHash.GetHashCode();
             return Math.Abs(secondHash);
@@ -35,7 +33,7 @@ namespace BloomFilterApp
         {
             var hash = HashString(thingToRemember);
 
-            return _bitArray[hash];
+            return _bloomArray[hash];
         }
     }
 }
