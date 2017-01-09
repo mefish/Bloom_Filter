@@ -29,10 +29,10 @@ namespace BloomFilterTests
             foreach (var testString in stringsToRemember) bloomFilter.Add(testString);
         }
 
-        public static List<string> GetListOfRandomStringsOfSize(int stringsToTest)
+        public static List<string> GetListOfRandomStringsOfSize(int stringsToTest, int stringSize = 3)
         {
             var stringsToRemember = new List<string>();
-            for (var i = 0; i < stringsToTest; i++) stringsToRemember.Add(GetRandomString());
+            for (var i = 0; i < stringsToTest; i++) stringsToRemember.Add(GetRandomString(stringSize));
             return stringsToRemember;
         }
     }
